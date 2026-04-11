@@ -1,0 +1,228 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------------------------------------------- */
+/*                               Design tokens                                */
+/* -------------------------------------------------------------------------- */
+
+:root {
+  --bg: #0c0a08;
+  --bg-soft: #15110d;
+  --bg-surface: #1d1813;
+  --fg: #efe7d9;
+  --fg-muted: #a89783;
+  --accent: #c69769;
+  --accent-soft: #dcb084;
+  --stone: #8a7f73;
+  --line: rgba(239, 231, 217, 0.08);
+  --line-strong: rgba(239, 231, 217, 0.18);
+
+  /* header height — kept in a var so sections can offset themselves */
+  --header-h: 88px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-h: 72px;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   Base                                     */
+/* -------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-behavior: auto; /* Lenis handles it. */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-feature-settings: 'ss01', 'cv11';
+    font-size: 17px;
+    line-height: 1.55;
+    min-height: 100vh;
+    letter-spacing: -0.005em;
+  }
+
+  ::selection {
+    background: rgba(198, 151, 105, 0.25);
+    color: #fff;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display), 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    color: var(--fg);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+  }
+
+  input, textarea, select {
+    font-family: inherit;
+    color: inherit;
+    background: transparent;
+  }
+
+  /* Accessibility — hide outlines only when not keyboard-focused. */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Respect reduced motion across the app. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                Components                                  */
+/* -------------------------------------------------------------------------- */
+
+@layer components {
+  .eyebrow {
+    @apply text-eyebrow uppercase font-sans text-bone-500;
+    font-weight: 500;
+  }
+
+  .rule {
+    @apply h-px w-full bg-[var(--line)];
+  }
+
+  .rule-soft {
+    @apply h-px w-full;
+    background: linear-gradient(to right, transparent, var(--line-strong), transparent);
+  }
+
+  .section {
+    @apply relative py-section;
+  }
+
+  /* Grain overlay — embedded as background-image in tailwind.config. */
+  .grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: var(--grain-image, none);
+    mix-blend-mode: overlay;
+    opacity: 0.25;
+  }
+
+  /* Warm radial halo — used on hero & section edges. */
+  .halo {
+    position: relative;
+  }
+  .halo::before {
+    content: '';
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 60%;
+    background: radial-gradient(ellipse at 50% 0%, rgba(198, 151, 105, 0.16), transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Dotted vertical rule — small typographic signal. */
+  .hairline-v {
+    @apply w-px self-stretch;
+    background: linear-gradient(to bottom, transparent, var(--line-strong) 20%, var(--line-strong) 80%, transparent);
+  }
+
+  /* Glass-y surface used by sparse cards. */
+  .surface {
+    background: linear-gradient(180deg, rgba(239, 231, 217, 0.02), rgba(239, 231, 217, 0.015));
+    border: 1px solid var(--line);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .surface-warm {
+    background: linear-gradient(180deg, rgba(198, 151, 105, 0.045), rgba(198, 151, 105, 0.015));
+    border: 1px solid rgba(198, 151, 105, 0.16);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  Utilities                                 */
+/* -------------------------------------------------------------------------- */
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .bleed-edge {
+    mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+  }
+
+  .bleed-soft {
+    mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+  }
+
+  .vignette {
+    box-shadow: inset 0 0 160px 40px rgba(12, 10, 8, 0.6);
+  }
+
+  /* Used on hero — very soft warm glow that breathes. */
+  .ember-breath {
+    background: radial-gradient(ellipse 50% 35% at 50% 55%, rgba(198, 151, 105, 0.25), rgba(198, 151, 105, 0) 70%);
+    animation: breathe 7s ease-in-out infinite;
+    filter: blur(40px);
+  }
+
+  .divider-label {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .divider-label::before,
+  .divider-label::after {
+    content: '';
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--line-strong), transparent);
+  }
+
+  /* Reserved vertical space for the fixed header on section-anchored pages. */
+  .offset-header {
+    padding-top: calc(var(--header-h) + 2rem);
+  }
+}
