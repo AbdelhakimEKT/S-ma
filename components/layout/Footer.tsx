@@ -1,6 +1,25 @@
 import Link from 'next/link'
 import { site, nav } from '@/data/site'
 
+function IconInstagram({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
+      strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <circle cx="12" cy="12" r="4.5" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
+function IconTikTok({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden>
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.3a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z" />
+    </svg>
+  )
+}
+
 /**
  * Footer — information-dense but calm, with a slow closing line.
  *
@@ -72,11 +91,24 @@ export default function Footer() {
                 {site.contact.phoneDisplay}
               </a>
             </li>
-            {site.socials.map((s) => (
-              <li key={s.label}>
-                <FooterLink href={s.href}>{s.label}</FooterLink>
-              </li>
-            ))}
+            {/* Social icon links */}
+            <li className="pt-2">
+              <div className="flex items-center gap-3">
+                {site.socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] text-bone-400 hover:border-ember-500/60 hover:text-ember-400 transition-colors duration-400"
+                  >
+                    {s.label === 'Instagram' && <IconInstagram className="h-4 w-4" />}
+                    {s.label === 'TikTok' && <IconTikTok className="h-3.5 w-3.5" />}
+                  </a>
+                ))}
+              </div>
+            </li>
           </FooterColumn>
         </div>
 

@@ -105,7 +105,16 @@ export default function StepInfo() {
         />
         <Checkbox
           checked={draft.guest.consent}
-          onChange={(v) => { patch('consent', v); setTouched((t) => ({ ...t, consent: true })) }}
+          onChange={(v) => {
+            patch('consent', v)
+            if (v) {
+              setErrors((current) => {
+                const next = { ...current }
+                delete next.consent
+                return next
+              })
+            }
+          }}
           label="J'accepte que la maison conserve mes coordonnées pour traiter ma réservation, conformément au RGPD."
           required
           error={touched.consent ? errors.consent : undefined}
@@ -174,7 +183,7 @@ function Field({
         {label}
       </span>
       {error && (
-        <span className="mt-1.5 block text-[11.5px] text-red-300">{error}</span>
+        <span className="mt-1.5 block text-[11.5px] text-amber-200/90">{error}</span>
       )}
     </label>
   )
@@ -246,7 +255,7 @@ function Checkbox({
         {label}
         {required && <span className="ml-1 text-ember-500">*</span>}
         {error && (
-          <span className="mt-1 block text-[11.5px] text-red-300">{error}</span>
+          <span className="mt-1 block text-[11.5px] text-amber-200/90">{error}</span>
         )}
       </span>
     </label>

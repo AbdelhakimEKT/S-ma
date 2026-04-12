@@ -34,9 +34,18 @@ export const site = {
     { day: 'Lundi', ranges: ['Repos de la maison'] },
   ],
   socials: [
-    { label: 'Instagram', href: 'https://instagram.com' },
-    { label: 'Pinterest', href: 'https://pinterest.com' },
-    { label: 'Journal', href: '/journal' },
+    {
+      label: 'Instagram',
+      handle: '@soma.orleans',
+      href: 'https://instagram.com',
+      description: 'Les coulisses, la lumière du matin, l\'ordinaire du beau.',
+    },
+    {
+      label: 'TikTok',
+      handle: '@soma.orleans',
+      href: 'https://tiktok.com',
+      description: 'Les rituels en mouvement, les soins filmés au plus près.',
+    },
   ],
 } as const
 

@@ -124,8 +124,8 @@ export default function StepGuests() {
             </div>
           </div>
           <p className="mt-6 text-[12px] leading-relaxed text-bone-500">
-            Aucun acompte n'est demandé en ligne. Le règlement se fait sur place
-            au moment de votre venue. Annulation gratuite jusqu'à 48h avant.
+            Un acompte de 30 % sera demandé à l'étape suivante pour confirmer la réservation.
+            Le solde reste réglé sur place, au moment de votre venue. Annulation gratuite jusqu'à 48h avant.
           </p>
         </div>
       </div>

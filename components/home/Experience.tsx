@@ -49,7 +49,7 @@ export default function Experience() {
   const y = useTransform(scrollYProgress, [0, 1], ['-8%', '8%'])
 
   return (
-    <section ref={ref} className="section relative bg-ink-800 halo">
+    <section id="experience" ref={ref} className="section relative bg-ink-800 halo">
       <div className="container">
         <div className="mb-20 max-w-2xl">
           <Reveal className="eyebrow mb-6 flex items-center gap-4 text-bone-500">

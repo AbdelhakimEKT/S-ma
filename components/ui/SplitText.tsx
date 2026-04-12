@@ -9,6 +9,7 @@ interface SplitTextProps {
   /** `word` reveals whole words; `line` expects multiline text and splits on `\n`. */
   by?: 'word' | 'line'
   className?: string
+  maskClassName?: string
   /** Stagger between words/lines. */
   stagger?: number
   delay?: number
@@ -28,6 +29,7 @@ export default function SplitText({
   text,
   by = 'word',
   className,
+  maskClassName,
   stagger = 0.045,
   delay = 0,
   duration = 1,
@@ -49,7 +51,7 @@ export default function SplitText({
   }
 
   const item: Variants = {
-    hidden: { y: '115%' },
+    hidden: { y: '120%' },
     visible: {
       y: '0%',
       transition: { duration, ease: ease.out },
@@ -70,7 +72,7 @@ export default function SplitText({
       {chunks.map((chunk, i) => (
         <span
           key={`${chunk}-${i}`}
-          className="inline-block overflow-hidden align-baseline"
+          className={cn('inline-block overflow-hidden pb-[0.25em] -mb-[0.25em] align-baseline', maskClassName)}
           aria-hidden
         >
           <motion.span variants={item} className="inline-block will-change-transform">
