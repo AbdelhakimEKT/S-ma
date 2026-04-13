@@ -94,7 +94,7 @@ export default function ContactPage() {
 
             {/* Horaires */}
             <Reveal delay={0.2}>
-              <div className="surface rounded-sm p-10">
+              <div className="surface rounded-sm p-6 md:p-10">
                 <p className="eyebrow mb-6 text-bone-500">Horaires d'ouverture</p>
                 <ul className="divide-y divide-[var(--line)]">
                   {site.hours.map((h) => (
@@ -120,7 +120,8 @@ export default function ContactPage() {
       </section>
 
       {/* ── Carte ────────────────────────────────────────────────────────────── */}
-      <section className="pb-0">
+      {/* overflow-x-hidden au niveau section — verrou anti-débordement iframe */}
+      <section className="pb-0 overflow-x-hidden">
         <Divider label="Plan d'accès" className="container mb-16" />
         <div className="container">
           <Reveal>

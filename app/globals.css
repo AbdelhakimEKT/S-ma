@@ -62,6 +62,9 @@
     line-height: 1.55;
     min-height: 100vh;
     letter-spacing: -0.005em;
+    /* Bloque le scroll horizontal sur toutes les pages — cause fréquente :
+       éléments absolus, iframes, Marquee, animations qui débordent. */
+    overflow-x: hidden;
   }
 
   ::selection {
