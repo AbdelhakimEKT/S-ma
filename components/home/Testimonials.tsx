@@ -49,7 +49,7 @@ export default function Testimonials() {
                 className="max-w-[44ch] font-serif text-[clamp(1.7rem,3.2vw,2.6rem)] leading-[1.15] text-bone-100"
               >
                 <span className="relative">
-                  <span className="absolute -left-8 -top-6 font-serif text-6xl text-ember-500/40 select-none">
+                  <span className={'absolute -top-6 -left-4 font-serif text-6xl text-ember-500/40 select-none sm:-left-8'}>
                     “
                   </span>
                   {current.quote}

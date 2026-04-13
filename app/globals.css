@@ -38,6 +38,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    /* Sur iOS, overflow-x:hidden sur body seul ne suffit pas — il faut les deux. */
+    overflow-x: hidden;
   }
 
   html.lenis,

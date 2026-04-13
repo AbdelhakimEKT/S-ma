@@ -113,7 +113,7 @@ export default function Manifesto() {
             {/* Small overlay card */}
             <Reveal
               delay={0.4}
-              className="absolute -bottom-6 -left-6 max-w-[240px] surface rounded-sm p-5 backdrop-blur-md md:-left-12"
+              className="absolute -bottom-6 left-0 max-w-[240px] surface rounded-sm p-5 backdrop-blur-md sm:-left-6 md:-left-12"
             >
               <div className="eyebrow mb-2 text-bone-500">Depuis 2019</div>
               <p className="font-serif text-xl leading-tight text-bone-100">
